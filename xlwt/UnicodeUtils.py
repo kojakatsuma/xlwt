@@ -34,8 +34,8 @@ Offset  Size    Contents
 [2 or 3] 2      (optional, only if richtext=1) Number of Rich-Text formatting runs (rt)
 [var.]   4      (optional, only if phonetic=1) Size of Asian phonetic settings block (in bytes, sz)
 var.     ln or 
-         2·ln   Character array (8-bit characters or 16-bit characters, dependent on ccompr)
-[var.]   4·rt   (optional, only if richtext=1) List of rt formatting runs 
+         2ï¿½ln   Character array (8-bit characters or 16-bit characters, dependent on ccompr)
+[var.]   4ï¿½rt   (optional, only if richtext=1) List of rt formatting runs 
 [var.]   sz     (optional, only if phonetic=1) Asian Phonetic Settings Block 
 '''
 
@@ -47,7 +47,8 @@ def upack2(s, encoding='ascii'):
     if isinstance(s, unicode):
         us = s
     else:
-        us = unicode(s, encoding)
+        us = unicode(s, encoding) if s else ""
+
     # Limit is based on number of content characters
     # (not on number of bytes in packed result)
     len_us = len(us)
